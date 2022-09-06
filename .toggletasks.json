@@ -1,0 +1,16 @@
+{
+  "tasks": [
+    {
+      "name": "Run Tests",
+      "cmd": "go test -v"
+    },
+    {
+      "name": "Build",
+      "cmd": "go build"
+    },
+    {
+      "name": "Start Database",
+      "cmd": "./start_db.sh"
+    }
+  ]
+}
