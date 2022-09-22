@@ -183,7 +183,7 @@ func TestUpdateProduct(t *testing.T) {
 	addProducts(1)
 
 	// Get the first product
-	req, _ := http.NewRequest("GET", "/products/1", nil)
+	req, _ := http.NewRequest("GET", "/product/1", nil)
 	response := executeRequest(req)
 
 	// unmarshal the response into originalProduct
@@ -195,7 +195,7 @@ func TestUpdateProduct(t *testing.T) {
 	log.Println("Modifications made")
 
 	// create a new request with the unmarshalled object
-	update_req, _ := http.NewRequest("PUT", "/products/1", bytes.NewBuffer(jsonStr))
+	update_req, _ := http.NewRequest("PUT", "/product/1", bytes.NewBuffer(jsonStr))
 	update_req.Header.Set("Content-Type", "application/json")
 	log.Println("Created a new request")
 
@@ -229,17 +229,17 @@ func TestDeleteProduct(t *testing.T) {
 	addProducts(1)
 
 	// check if the product got created
-	req, _ := http.NewRequest("GET", "/products/1", nil)
+	req, _ := http.NewRequest("GET", "/product/1", nil)
 	response := executeRequest(req)
 	checkResponseCode(t, http.StatusOK, response.Code)
 
 	// delete the product
-	req_delete, _ := http.NewRequest("DELETE", "/products/1", nil)
+	req_delete, _ := http.NewRequest("DELETE", "/product/1", nil)
 	response_delete := executeRequest(req_delete)
 	checkResponseCode(t, http.StatusOK, response_delete.Code)
 
 	// check if the product fetch again fails
-	req_check, _ := http.NewRequest("GET", "/products/1", nil)
+	req_check, _ := http.NewRequest("GET", "/product/1", nil)
 	response_check := executeRequest(req_check)
 	checkResponseCode(t, http.StatusNotFound, response_check.Code)
 }
